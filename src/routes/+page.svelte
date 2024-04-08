@@ -119,12 +119,13 @@
         height: 2em;
     }
 
+        
     ul {
         border: 1px solid rgb(233, 229, 229);
-        padding: 10px 5px;
-        display: flex;
-        flex-wrap: wrap; 
-        max-width: 62em;       
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(11em, 1fr));
+        flex: 1;
+
     }
 
     .container {
@@ -138,7 +139,7 @@
     .legend li {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 5px;
         
     }
 
