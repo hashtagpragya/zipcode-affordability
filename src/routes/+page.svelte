@@ -109,13 +109,12 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    /* background-color: aqua; */
     }
-    
+
     #income-box{
         margin-top: 1em;
         padding: 0.5em;
-        width: 20em;
+        width: 21em;
         border-radius: 5px;
         height: 2em;
     }
@@ -124,7 +123,8 @@
         border: 1px solid rgb(233, 229, 229);
         padding: 10px 5px;
         display: flex;
-        flex-wrap: wrap;        
+        flex-wrap: wrap; 
+        max-width: 62em;       
     }
 
     .container {
@@ -132,7 +132,7 @@
         align-items: center;
         gap: 2em;
         margin: 10px;
-        max-height: 200px;
+        max-height: 250px;
     }
 
     .legend li {
