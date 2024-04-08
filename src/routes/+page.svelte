@@ -11,30 +11,12 @@
     let map;
     let mapViewChanged = 0;
 
-    async function geocodeAddress(address) {
-    try {
-      const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${mapboxgl.accessToken}`);
-      const data = await response.json();
-      if (data.features && data.features.length > 0) {
-        const coordinates = data.features[0].center;
-        const lngLat = new mapboxgl.LngLat(coordinates[0], coordinates[1]);
-        return lngLat
-      } else {
-        // Handle invalid address or no results
-        console.error("No results found for the provided address");
-      }
-    } catch (error) {
-      console.error("Error geocoding address:", error);
-    }
-  } 
-
-    async function getCoords (house) {
-        console.log("house:", house)
-        let point = await geocodeAddress(house.full_address)
-        // let point = new mapboxgl.LngLat(+house.Longitude, +house.Latitude);
+    function getCoords (house) {
+        let point = new mapboxgl.LngLat(+house.long, +house.lat);
         let {x, y} = map.project(point);
         return {cx: x, cy: y};
     }
+
 
     $: map?.on("move", evt => mapViewChanged++);
 
@@ -47,10 +29,10 @@
             zoom: 10,
         });
 
-        houses = await d3.csv("%sveltekit.assets%/filtered_boston_data.csv", residential => ({
-            ...residential,
+        houses = await d3.csv("https://vis-society.github.io/labs/8/data/bluebikes-stations.csv", house => ({
+          ...house
         }));
-        console.log(houses)
+
     })
 
 
@@ -60,11 +42,11 @@
 
 <div id="map">
     <svg>
-        <!-- {#key mapViewChanged}
+        {#key mapViewChanged}
             {#each houses as house }
             <circle { ...getCoords(house) } r="5" fill="steelblue" />
             {/each}
-        {/key} -->
+        {/key}
     </svg>
 </div>
 
