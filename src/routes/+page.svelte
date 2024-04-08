@@ -62,13 +62,13 @@
 	flex: 1;
     }
 
-    #map svg {
+    /* #map svg {
     position: absolute;
     z-index: 1;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    }
+    } */
 
     #income-box{
         margin-top: 1em;
