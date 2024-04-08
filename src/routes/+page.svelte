@@ -8,8 +8,9 @@
     mapboxgl.accessToken = import.meta.env.VITE_MY_TOKEN;
 
     let houses = [];
-    let map;
+    let map, filteredHouse;
     let mapViewChanged = 0;
+    let incomeFilter = -1;
 
     function getCoords (house) {
         let point = new mapboxgl.LngLat(+house.lon, +house.lat);
@@ -17,9 +18,14 @@
         return {cx: x, cy: y};
     }
 
+    function affordable (first_year_payment, income) {
+        return income*0.3 > first_year_payment
+    }
+
 
     $: map?.on("move", evt => mapViewChanged++);
-
+    $: {filteredHouse = incomeFilter === -1? houses: houses.filter(house => affordable(house.first_year_payment, incomeFilter));
+    console.log("filteredHouse:", filteredHouse)}
     onMount(async () => {
         map = new mapboxgl.Map({
             /* options */
@@ -45,7 +51,7 @@
 <div id="map">
     <svg>
         {#key mapViewChanged}
-            {#each houses as house }
+            {#each filteredHouse as house }
             <circle { ...getCoords(house) } r="5" fill="steelblue" />
             {/each}
         {/key}
@@ -55,7 +61,7 @@
 
 
 
-<input type="number" id="income-box" placeholder="Enter your annual income">
+<input type="number" id="income-box" placeholder="Enter your annual income" bind:value={incomeFilter}>
 
 <style>
     @import url("$lib/global.css");
