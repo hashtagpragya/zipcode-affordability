@@ -3,6 +3,8 @@
     import "../../node_modules/mapbox-gl/dist/mapbox-gl.css";
     import { onMount } from "svelte";
     import * as d3 from "d3";
+    import Pie from '$lib/Pie.svelte';
+
 
 
     mapboxgl.accessToken = import.meta.env.VITE_MY_TOKEN;
@@ -10,7 +12,7 @@
     let houses = [];
     let map, filteredHouse;
     let mapViewChanged = 0;
-    let incomeFilter = -1;
+    let incomeFilter;
 
     function getCoords (house) {
         let point = new mapboxgl.LngLat(+house.lon, +house.lat);
@@ -24,7 +26,7 @@
 
 
     $: map?.on("move", evt => mapViewChanged++);
-    $: filteredHouse = incomeFilter === -1? houses: houses.filter(house => affordable(house.first_year_payment, incomeFilter));
+    $: filteredHouse = incomeFilter == undefined? houses: houses.filter(house => affordable(house.first_year_payment, incomeFilter));
     onMount(async () => {
         map = new mapboxgl.Map({
             /* options */
@@ -57,10 +59,16 @@
     </svg>
 </div>
 
+<div class="addition">
+    <input type="number" id="income-box" placeholder="Enter your annual income" bind:value={incomeFilter}>
+    <Pie />
+
+</div>
 
 
 
-<input type="number" id="income-box" placeholder="Enter your annual income" bind:value={incomeFilter}>
+
+
 
 <style>
     @import url("$lib/global.css");
@@ -77,11 +85,17 @@
     /* background-color: aqua; */
     }
 
+    .addition {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     #income-box{
         margin-top: 1em;
         padding: 0.5em;
         width: 20em;
         border-radius: 5px;
+        height: 2em;
     }
 
 </style>
