@@ -17,6 +17,10 @@
 
     let colorsMatch = {};
 
+    function getColor (val) {
+        return colorsMatch[val]
+    }
+
 
 
      // Make sure the variable definition is *outside* the block
@@ -68,7 +72,6 @@
         for (const [index, style]  of styles.entries()) {
             colorsMatch[style] = colors(index)
         }
-        console.log(colorsMatch)
     })
 
 
@@ -80,7 +83,7 @@
     <svg>
         {#key mapViewChanged}
             {#each filteredHouse as house, index }
-            <circle { ...getCoords(house) } r="5" fill={ colorsMatch[house.style] } />
+            <circle { ...getCoords(house) } r="5" fill={ colors(index)} />
             {/each}
         {/key}
     </svg>
@@ -91,8 +94,8 @@
 
     <ul class="legend">
         
-        {#each data as d}
-            <li style="--color: ${colorsMatch[d.style]}">
+        {#each data as d,index}
+            <li style="--color: { colors(index) }">
                 <span class="swatch"></span>
                 {d.label} <em>({d.value})</em>
             </li>
