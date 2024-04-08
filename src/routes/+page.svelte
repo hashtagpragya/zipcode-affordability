@@ -24,8 +24,7 @@
 
 
     $: map?.on("move", evt => mapViewChanged++);
-    $: {filteredHouse = incomeFilter === -1? houses: houses.filter(house => affordable(house.first_year_payment, incomeFilter));
-    console.log("filteredHouse:", filteredHouse)}
+    $: filteredHouse = incomeFilter === -1? houses: houses.filter(house => affordable(house.first_year_payment, incomeFilter));
     onMount(async () => {
         map = new mapboxgl.Map({
             /* options */
