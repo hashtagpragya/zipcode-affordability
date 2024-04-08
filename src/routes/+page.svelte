@@ -15,6 +15,8 @@
     let mapViewChanged = 0;
     let incomeFilter;
 
+    let colorsMatch = {};
+
 
 
      // Make sure the variable definition is *outside* the block
@@ -60,7 +62,13 @@
         houses = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/Smaller_dataset_1000.csv").then(houses => {
             return houses;
         });
-        
+
+        let styles = houses.map(house => house.style)
+
+        for (const [index, style]  of styles.entries()) {
+            colorsMatch[style] = colors(index)
+        }
+        console.log(colorsMatch)
     })
 
 
@@ -71,8 +79,8 @@
 <div id="map">
     <svg>
         {#key mapViewChanged}
-            {#each filteredHouse as house }
-            <circle { ...getCoords(house) } r="5" fill="steelblue" />
+            {#each filteredHouse as house, index }
+            <circle { ...getCoords(house) } r="5" fill={ colorsMatch[house.style] } />
             {/each}
         {/key}
     </svg>
@@ -82,8 +90,9 @@
     <input type="number" id="income-box" placeholder="Enter your annual income" bind:value={incomeFilter}>
 
     <ul class="legend">
-        {#each data as d, index}
-            <li style="--color: { colors(index) }" >
+        
+        {#each data as d}
+            <li style="--color: ${colorsMatch[d.style]}">
                 <span class="swatch"></span>
                 {d.label} <em>({d.value})</em>
             </li>
