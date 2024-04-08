@@ -29,7 +29,7 @@
             zoom: 10,
         });
 
-        houses = await d3.csv("", house => ({
+        houses = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/filtered_boston_residential_sales.csv", house => ({
           ...house
         }));
         console.log("houses:", houses)
