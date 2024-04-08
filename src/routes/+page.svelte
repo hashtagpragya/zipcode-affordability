@@ -29,7 +29,7 @@
             zoom: 10,
         });
 
-        houses = await d3.csv("https://usonia09.github.io/zipcode-affordability/data/filtered_boston_residential_sales.csv", house => ({
+        houses = await d3.csv("", house => ({
           ...house
         }));
         console.log("houses:", houses)
@@ -42,13 +42,13 @@
 <h1>Zipcode Affordability</h1>
 
 <div id="map">
-    <svg>
+    <!-- <svg>
         {#key mapViewChanged}
             {#each houses as house }
             <circle { ...getCoords(house) } r="5" fill="steelblue" />
             {/each}
         {/key}
-    </svg>
+    </svg> -->
 </div>
 
 
