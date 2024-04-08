@@ -29,10 +29,12 @@
             zoom: 10,
         });
 
-        houses = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/filtered_boston_residential_sales.csv", house => ({
-          ...house
-        }));
-
+        await new Promise(resolve => map.on("load", resolve));
+        
+        houses = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/Smaller_dataset_1000.csv").then(houses => {
+            return houses;
+        });
+        
     })
 
 
