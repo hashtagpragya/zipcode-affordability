@@ -12,7 +12,7 @@
     let mapViewChanged = 0;
 
     function getCoords (house) {
-        let point = new mapboxgl.LngLat(+house.long, +house.lat);
+        let point = new mapboxgl.LngLat(+house.lon, +house.lat);
         let {x, y} = map.project(point);
         return {cx: x, cy: y};
     }
@@ -32,7 +32,6 @@
         houses = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/filtered_boston_residential_sales.csv", house => ({
           ...house
         }));
-        console.log("houses:", houses)
 
     })
 
@@ -42,13 +41,13 @@
 <h1>Zipcode Affordability</h1>
 
 <div id="map">
-    <!-- <svg>
+    <svg>
         {#key mapViewChanged}
             {#each houses as house }
             <circle { ...getCoords(house) } r="5" fill="steelblue" />
             {/each}
         {/key}
-    </svg> -->
+    </svg>
 </div>
 
 
@@ -62,13 +61,14 @@
 	flex: 1;
     }
 
-    /* #map svg {
+    #map svg {
     position: absolute;
     z-index: 1;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    } */
+    /* background-color: aqua; */
+    }
 
     #income-box{
         margin-top: 1em;
