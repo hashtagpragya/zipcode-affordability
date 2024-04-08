@@ -29,9 +29,10 @@
             zoom: 10,
         });
 
-        houses = await d3.csv("https://vis-society.github.io/labs/8/data/bluebikes-stations.csv", house => ({
+        houses = await d3.csv("https://usonia09.github.io/zipcode-affordability/data/filtered_boston_residential_sales.csv", house => ({
           ...house
         }));
+        console.log("houses:", houses)
 
     })
 
