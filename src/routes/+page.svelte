@@ -15,13 +15,6 @@
     let mapViewChanged = 0;
     let incomeFilter;
 
-    let colorsMatch = {};
-
-    function getColor (val) {
-        return colorsMatch[val]
-    }
-
-
 
      // Make sure the variable definition is *outside* the block
      let data = [];
@@ -67,11 +60,6 @@
             return houses;
         });
 
-        let styles = houses.map(house => house.style)
-
-        for (const [index, style]  of styles.entries()) {
-            colorsMatch[style] = colors(index)
-        }
     })
 
 
