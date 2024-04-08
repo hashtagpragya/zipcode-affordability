@@ -6,6 +6,7 @@
     import Pie from '$lib/Pie.svelte';
 
 
+    let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
     mapboxgl.accessToken = import.meta.env.VITE_MY_TOKEN;
 
@@ -13,6 +14,24 @@
     let map, filteredHouse;
     let mapViewChanged = 0;
     let incomeFilter;
+
+
+
+     // Make sure the variable definition is *outside* the block
+     let data = [];
+
+
+    $: {
+    // Initialize to an empty object every time this runs
+    data = [];
+
+
+    // Calculate rolledData and pieData based on filteredProjects here
+    let rolledData = d3.rollups(filteredHouse, v => v.length, d => d.style);
+    data = rolledData.map(([style, count]) => {
+        return { value: count, label: style };
+        });
+    }
 
     function getCoords (house) {
         let point = new mapboxgl.LngLat(+house.lon, +house.lat);
@@ -59,9 +78,17 @@
     </svg>
 </div>
 
-<div class="addition">
+<div class="container">
     <input type="number" id="income-box" placeholder="Enter your annual income" bind:value={incomeFilter}>
-    <Pie />
+
+    <ul class="legend">
+        {#each data as d, index}
+            <li style="--color: { colors(index) }" >
+                <span class="swatch"></span>
+                {d.label} <em>({d.value})</em>
+            </li>
+        {/each}
+    </ul>   
 
 </div>
 
@@ -84,12 +111,7 @@
     pointer-events: none;
     /* background-color: aqua; */
     }
-
-    .addition {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+    
     #income-box{
         margin-top: 1em;
         padding: 0.5em;
@@ -97,5 +119,37 @@
         border-radius: 5px;
         height: 2em;
     }
+
+    ul {
+        border: 1px solid rgb(233, 229, 229);
+        padding: 10px 5px;
+        display: flex;
+        flex-wrap: wrap;        
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        gap: 2em;
+        margin: 10px;
+        max-height: 200px;
+    }
+
+    .legend li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        
+    }
+
+    .legend li span {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: var(--color);
+
+    }
+
+
 
 </style>
