@@ -5,6 +5,7 @@
     import * as d3 from "d3";
     import Pie from '$lib/Pie.svelte';
     import Grid from 'svelte-grid-responsive';
+  import InterConnected from "./InterConnected.svelte";
 
 
 
@@ -93,6 +94,7 @@
             <Grid xs={12} lg={4} order={2}>
     
                 <div id="inter_map">
+                    <!-- <InterConnected/> -->
                     <img src="interconnected_placeholder.png" alt="inter_placeholder" width="400" height="400"/>
                 </div>
             </Grid>
