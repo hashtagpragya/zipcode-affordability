@@ -106,19 +106,13 @@
     >
     <Grid xs={12} lg={4} order={2}>
       <div id="inter_map">
-        <!-- <InterConnected/> -->
-        <img
-          src="interconnected_placeholder.png"
-          alt="inter_placeholder"
-          width="400"
-          height="400"
-        />
+        <InterConnected />
       </div>
     </Grid>
   </Grid>
 </div>
 
-<h1>Housing Affordability</h1>
+<h1 style="margin-top: 500px;">Housing Affordability</h1>
 
 <!-- <div id="map">
     <svg>
