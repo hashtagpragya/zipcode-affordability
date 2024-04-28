@@ -8,7 +8,7 @@
     const formatLabel = d3.format(',.0f');
 
 
-    let width= 400, height = 150;
+    let width= 500, height = 300;
     let margin = {top: 10, right: 60, bottom: 30, left: 50};
 
     let usableArea = {

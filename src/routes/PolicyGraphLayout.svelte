@@ -3,7 +3,6 @@
     import {onMount} from "svelte";
     import ScatterPlot from './ScatterPlot.svelte';
     import PolicyGraph from './PolicyGraph.svelte';
-    import HouseScale from './HouseScale.svelte';
 
     let data = [];
     let selectedHouses =[];
@@ -49,10 +48,10 @@
         <ScatterPlot on:brushChanged={handleBrushingChanged} data={data}/>
     </div>
     <div class="policy">
-        <h2>Policies Effects</h2>
+        <h3>Policies Effects</h3>
         <PolicyGraph policy1Amount={policy1Amount} policy2Amount={policy2Amount}/>
 
-        <h2>The affordable housing potential</h2>
+        <h3>The affordable housing potential</h3>
         
         <!-- TODO Do more meaningful calculations here -->
         <span> {housingpotential}</span>  
@@ -66,6 +65,7 @@
 <style>
 @import url("$lib/global.css");
 
+
 .container {
     border: 1px solid black;
     width: 100%;
@@ -78,21 +78,15 @@
 .policy {
     display: flex;
     flex-direction: column;
-    /* justify-content: center */
-
 }
 
-.policy h2{
-    align-self: center;
-    font-size: 30px;
+h3 {
+    text-align: center;
 }
 span {
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
     align-self: center;
-    border: 1px solid black;
-    padding: 0.5em;
-    border-radius: 20px;
 }
 
 </style>

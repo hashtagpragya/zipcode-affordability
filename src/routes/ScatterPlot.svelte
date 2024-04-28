@@ -15,7 +15,7 @@
     let xScale,yScale;
     let selectedHouses =[];
     
-    let width = 1000, height = 650;
+    let width = 1000, height = 800;
     let margin = {top: 10, right: 10, bottom: 30, left: 50};
     let usableArea = {
 	top: margin.top,
@@ -102,7 +102,7 @@
                     class:selected={isHouseSelected(house)}
                     cx={ xScale(house.year) }
                     cy={ yScale(house.price)}
-                    r="3"
+                    r="5"
                     fill= "steelblue"
                     on:mouseenter={evt => dotInteraction(index, evt)}
                     on:mouseleave={evt => dotInteraction(index, evt)}
@@ -117,7 +117,7 @@
                 <circle
                 cx={ xScale(house.year) }
                 cy={ yScale(house.price)}
-                r="3"
+                r="5"
                 />
 
             {/each}
@@ -191,7 +191,7 @@ circle {
 	}
 
     &.selected {
-            fill: orange;
+            fill: red;
         }
 
     @starting-style {
