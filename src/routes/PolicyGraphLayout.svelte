@@ -6,19 +6,19 @@
 
     let data = [];
     let selectedHouses =[];
-    let policy1Amount = 0;
-    let policy2Amount = 0;
+    let property_taxAmount = 0;
+    let transfer_taxAmount = 0;
 
     function handleBrushingChanged(event) {
         selectedHouses = event.detail.detail;
     }
 
     $:{
-        policy1Amount = d3.sum(selectedHouses, d => d.policy1)
-        policy2Amount = d3.sum(selectedHouses, d => d.policy2)
+        property_taxAmount = d3.sum(selectedHouses, d => d.property_tax)
+        transfer_taxAmount = d3.sum(selectedHouses, d => d.transfer_tax)
     }
 
-    $: housingpotential = Math.ceil((policy1Amount+policy2Amount)/500000)
+    $: housingpotential = Math.ceil((property_taxAmount+transfer_taxAmount)/500000)
 
     onMount(async() => {
 
@@ -30,13 +30,13 @@
         // transfer_tax
         // property_tax
 
-        data = await d3.csv("dummy_data.csv", house => ({
+        data = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/filtered_policies_boston_residential_sales.csv", house => ({
             ...house, 
 
             year: Number(house.year),
             price: Number(house.price),
-            policy1: Number(house.policy1),
-            policy2: Number(house.policy2),
+            property_tax: Number(house.property_tax),
+            transfer_tax: Number(house.transfer_tax),
             yearbuilt: Number(house.yearbuilt)
 
         }))
@@ -49,7 +49,7 @@
     </div>
     <div class="policy">
         <h3>Policies Effects</h3>
-        <PolicyGraph policy1Amount={policy1Amount} policy2Amount={policy2Amount}/>
+        <PolicyGraph property_taxAmount={property_taxAmount} transfer_taxAmount={transfer_taxAmount}/>
 
         <h3>The affordable housing potential</h3>
         
