@@ -11,7 +11,6 @@
   let linesHouses = [];
   let linesMapViewChanged = 0;
   const customTimeFormat = d3.timeFormat("%Y");
-  let affordableHouseCostChange;
   const years = Array.from({ length: 2023 - 2000 + 1 }, (_, index) =>
     (2000 + index).toString()
   );
@@ -20,8 +19,8 @@
     [-70.92087, 42.39694], // Northeast coordinates
   ];
 
-  let width = 1000,
-    height = 600;
+  let width = 800,
+    height = 500;
   let margin = { top: 10, right: 10, bottom: 30, left: 20 };
   let usableArea = {
     top: margin.top,
@@ -35,17 +34,25 @@
   let xScale, yScale, xAxis, yAxis, line;
   let filteredAffordableHouse,
     filteredUnaffordableHouse,
-    rolledDataAffordable,
     rolledDataUnaffordable = [];
+  const lineCoordinates = [
+    [21.1818181818182, 370.0909090909091],
+    [108.18181818181819, 350.0909090909091],
+    [196.36363636363637, 365.1818181818182],
+    [284.54545454545456, 300.25429666846406],
+    [372.72727272727275, 260.3636363636364],
+    [460.90909090909093, 270.4545454545455],
+    [549.0909090909091, 230.3859297682076],
+    [637.2727272727273, 170.63636363636363],
+    [725.4545454545455, 163.72727272727275],
+    [790.6363636363637, 161.75349091692405],
+  ];
   mapboxgl.accessToken =
     "pk.eyJ1IjoiZWZhaXRoMSIsImEiOiJjbHVwM3hqbngxejEwMmlxcHZoMnd4NzVoIn0.aImOljzGu-9EUSa9aFcQzw";
 
   function translate(x, y) {
     return `translate(${x}, ${y})`;
   }
-
-  // Animate
-  // AVERAGE cost of those affordable styles by year: data map - FIRST YEAR PAYMENT BY YEAR
 
   onMount(async () => {
     linesMap = new mapboxgl.Map({
@@ -68,7 +75,7 @@
 
     xScale = d3
       .scaleTime()
-      .domain([new Date(2000, 0), new Date(2024, 0)])
+      .domain([new Date(2000, 0), new Date(2023, 0)])
       .range([usableArea.left, usableArea.right]);
 
     yScale = d3
@@ -86,6 +93,7 @@
           .axisBottom(xScale)
           .tickFormat((d) => customTimeFormat(d).replace(/,/g, ""))
       );
+
     yAxis = d3
       .select(svg)
       .append("g")
@@ -93,39 +101,46 @@
       .attr("transform", translate(usableArea.left, 0))
       .call(d3.axisLeft(yScale));
 
-    // Define the number of points on the line
-    const numPoints = 12;
-
-    // Calculate the increment for x and y values
-    const xIncrement = (usableArea.right - usableArea.left) / (numPoints - 1);
-    const yIncrement = (usableArea.top - usableArea.bottom) / (numPoints - 1);
-
-    // Initialize line coordinates array
-    const lineCoordinates = [];
-
-    // Generate line coordinates with bumps
-    for (let i = 0; i < numPoints; i++) {
-      const x = usableArea.left + i * xIncrement;
-      let y = usableArea.bottom + i * yIncrement;
-
-      // Add bumps
-      if (i % 3 === 0) {
-        // Bump every 3rd point
-        y += Math.random() * 100; // Add random value to y
+    function drawLineSegments() {
+      d3.selectAll(".line-segment").remove();
+      for (let i = 0; i < lineCoordinates.length - 1; i++) {
+        const segment = [lineCoordinates[i], lineCoordinates[i + 1]];
+        line = d3
+          .select(svg)
+          .append("path")
+          .attr("d", d3.line()(segment))
+          .attr("class", "line-segment")
+          .transition()
+          .delay(i * 1000)
+          .duration(1000)
+          .style("stroke", "steelblue")
+          .style("stroke-width", 10)
+          .style("fill", "none");
       }
-
-      // Add point to lineCoordinates array
-      lineCoordinates.push([x, y]);
+      setTimeout(drawLineSegments, (lineCoordinates.length - 1) * 1000);
     }
 
-    // Append the line to the SVG
-    const line = d3
-      .select(svg)
-      .append("path")
-      .attr("d", d3.line()(lineCoordinates)) // Generate path string from line coordinates
-      .style("stroke", "steelblue")
-      .style("stroke-width", 2)
-      .style("fill", "none");
+    drawLineSegments();
+
+    function animateCircles() {
+      setTimeout(() => {
+        const circles = document.querySelectorAll(".animated-circle");
+        circles.forEach((circle, index) => {
+          setTimeout(() => {
+            circle.setAttribute("r", "5");
+          }, index * 2.2);
+        });
+
+        setTimeout(() => {
+          circles.forEach((circle) => {
+            circle.setAttribute("r", "0");
+          });
+        }, 6600);
+
+        setTimeout(animateCircles, 8600);
+      }, 0);
+    }
+    animateCircles();
   });
 
   $: filteredAffordableHouse = linesHouses.filter((house) =>
@@ -183,17 +198,16 @@
   }
 </script>
 
-<!-- animate slow -->
 <div id="linesMap">
   <svg>
     {#key linesMapViewChanged}
       {#each years as year}
         {#each filteredUnaffordableHouse
-          .slice(0, 1000)
+          .slice(0, 3000)
           .filter((house) => house.sale_year === year) as house}
           <circle
             {...getCoords(house)}
-            r="5"
+            r="0"
             fill="green"
             class="animated-circle"
           />
@@ -204,16 +218,31 @@
 </div>
 
 <div id="lineGraph">
-  <svg viewBox={`0 0 ${width} ${height}`} bind:this={svg}> </svg>
+  <svg bind:this={svg}> </svg>
 </div>
 
 <style>
   @import url("$lib/global.css");
+
+  @keyframes circleAnimation {
+    0% {
+      r: 0;
+      opacity: 0;
+    }
+    100% {
+      r: 5;
+      opacity: 1;
+    }
+  }
+
+  .animated-circle {
+    animation: circleAnimation 0.5s ease;
+  }
+
   .container {
     display: flex;
     align-items: center;
     gap: 2em;
-    /* margin: 40px; */
     max-height: 250px;
   }
 
@@ -225,15 +254,14 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    /* padding-left: 50px; */
-    /* margin: 40px; */
+    margin: 40px;
   }
 
   #lineGraph svg {
     position: absolute;
     z-index: 1;
-    width: 100%;
-    height: 100%;
+    width: 800px;
+    height: 500px;
     pointer-events: none;
   }
   .x-axis path,
@@ -242,6 +270,7 @@
   .y-axis line {
     fill: none;
     stroke: #000;
+    stroke-width: 4;
     shape-rendering: crispEdges;
   }
 
