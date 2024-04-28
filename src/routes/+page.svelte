@@ -112,7 +112,7 @@
   </Grid>
 </div>
 
-<h1 style="margin-top: 500px;">Housing Affordability</h1>
+<h1 style="margin-top: 400px;">Housing Affordability</h1>
 
 <!-- <div id="map">
     <svg>
