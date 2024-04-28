@@ -8,13 +8,17 @@
   let dataUnaffordable = [];
   let svg, linesMap;
   let householdIncome = 65000;
-  let houses = [];
-  let mapViewChanged = 0;
+  let linesHouses = [];
+  let linesMapViewChanged = 0;
   const customTimeFormat = d3.timeFormat("%Y");
   let affordableHouseCostChange;
   const years = Array.from({ length: 2023 - 2000 + 1 }, (_, index) =>
     (2000 + index).toString()
   );
+  const bounds = [
+    [-71.191421, 42.22788], // Southwest coordinates
+    [-70.92087, 42.39694], // Northeast coordinates
+  ];
 
   let width = 1000,
     height = 600;
@@ -34,7 +38,7 @@
     rolledDataAffordable,
     rolledDataUnaffordable = [];
   mapboxgl.accessToken =
-    "pk.eyJ1IjoidXNvbmlhIiwiYSI6ImNsdW9xMnZlYjBpZmkya3BiODN4aHJmaDEifQ.7_EpwmnX-wcM1QNdRvujJg";
+    "pk.eyJ1IjoiZWZhaXRoMSIsImEiOiJjbHVwM3hqbngxejEwMmlxcHZoMnd4NzVoIn0.aImOljzGu-9EUSa9aFcQzw";
 
   function translate(x, y) {
     return `translate(${x}, ${y})`;
@@ -48,17 +52,18 @@
       container: "linesMap",
       style: "mapbox://styles/mapbox/streets-v12",
       center: [-71.3679725, 42.40010974514135],
-      zoom: 10,
+      zoom: 0,
+      maxBounds: bounds,
     });
 
     await new Promise((resolve) => linesMap.on("load", resolve));
 
-    houses = await d3
+    linesHouses = await d3
       .csv(
         "https://raw.githubusercontent.com/efaith1/data_viz_python_scripts/main/filtered_boston_residential_sales.csv"
       )
-      .then((houses) => {
-        return houses;
+      .then((linesHouses) => {
+        return linesHouses;
       });
 
     xScale = d3
@@ -123,11 +128,11 @@
       .style("fill", "none");
   });
 
-  $: filteredAffordableHouse = houses.filter((house) =>
+  $: filteredAffordableHouse = linesHouses.filter((house) =>
     affordable(house.first_year_payment, householdIncome)
   );
 
-  $: filteredUnaffordableHouse = houses.filter((house) =>
+  $: filteredUnaffordableHouse = linesHouses.filter((house) =>
     unaffordable(house.first_year_payment, householdIncome)
   );
 
@@ -150,17 +155,6 @@
       }
     );
 
-    for (let i = 2000; i < 2024; i++) {
-      //   let total = 0;
-      for (let [year, price] of dataAffordable.entries()) {
-        // let year = house.value;
-        // let price = house.label;
-        if (year.value === i) {
-          // total += price;
-        }
-      }
-    }
-
     filteredUnaffordableHouse.forEach((house) => {
       rolledDataUnaffordable.push([house.sale_year, house.first_year_payment]);
     });
@@ -172,7 +166,7 @@
     );
   }
 
-  $: linesMap?.on("move", (evt) => mapViewChanged++);
+  $: linesMap?.on("move", (evt) => linesMapViewChanged++);
 
   function affordable(first_year_payment, income) {
     return income * 0.3 > first_year_payment;
@@ -189,12 +183,10 @@
   }
 </script>
 
-<h1>Map and Line for 65000/yr household income</h1>
-
 <!-- animate slow -->
 <div id="linesMap">
   <svg>
-    {#key mapViewChanged}
+    {#key linesMapViewChanged}
       {#each years as year}
         {#each filteredUnaffordableHouse
           .slice(0, 1000)
@@ -217,19 +209,11 @@
 
 <style>
   @import url("$lib/global.css");
-  #income-box {
-    margin-top: 1em;
-    padding: 0.5em;
-    width: 21em;
-    border-radius: 5px;
-    height: 2em;
-  }
-
   .container {
     display: flex;
     align-items: center;
     gap: 2em;
-    margin: 40px;
+    /* margin: 40px; */
     max-height: 250px;
   }
 
@@ -241,8 +225,8 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    padding-left: 50px;
-    margin: 40px;
+    /* padding-left: 50px; */
+    /* margin: 40px; */
   }
 
   #lineGraph svg {
@@ -269,6 +253,8 @@
   #linesMap {
     flex: 1;
     overflow: auto;
+    width: 800px;
+    height: 500px;
   }
 
   #linesMap svg {
