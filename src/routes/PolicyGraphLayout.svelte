@@ -44,7 +44,9 @@
     </div>
     <div class="policy">
         <h3>Projected Revenue Per Policy Implementation</h3>
-        <PolicyGraph property_taxAmount={property_taxAmount} transfer_taxAmount={transfer_taxAmount}/>
+        <!-- <PolicyGraph property_taxAmount={property_taxAmount} transfer_taxAmount={transfer_taxAmount}/> -->
+            <h4 style="color: #610C63">From Property Tax: $ {property_taxAmount}</h4>
+            <h4 style="color: #610C63">From Transfer Fees: $ {transfer_taxAmount}</h4>
 
         <h3>Number of Homes That Could Be Built </h3>
         
@@ -74,6 +76,7 @@
     display: flex;
     flex-direction: column;
 }
+
 
 h3 {
     text-align: center;
