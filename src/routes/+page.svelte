@@ -30,36 +30,50 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
         </div>
     </div>
 
-    <div class="graphContainer">
-        <div class="graphNar">GraphNar1</div>
-        <div class="graph"><ZipCodeAffordability/></div>
+    <div class="graphContainer" style="grid-template-columns: 1fr;">
+        <!-- <div class="graphNar"><img src="Image6.jpeg" alt="datacomic_1" /></div> -->
+        <div class="graph">
+            <h2>Input Your Annual Income to Discover Affordable Housing Options</h2>
+            <ZipCodeAffordability/></div>
     </div>
 
-    <div class="comicContainer">
-        <div class="comicNar">ComicNar2</div>
-        <div class="comic">Comic2</div>
+    <div class="comicContainer" style="grid-template-columns: 1fr 1fr;">
+        <div class="comicNar"> <img src="Image6.jpeg" alt="datacomic_1" /></div>
+        <div class="comic"> <img src="Image7.jpeg" alt="datacomic_1" /></div>
     </div>
  
-    <div class="graphContainer">
-        <div class="graphNar">GraphNar2</div>
-        <div class="graph"><InterConnected/></div>
+    <div class="graphContainer" >
+        <div class="graphNar"><img src="Image8.jpeg" alt="datacomic_1" /></div>
+        <div class="graph">
+            <h2>Visual Depiction of the Growth of Unaffordable Housing in Boston</h2>
+            <InterConnected/></div>
     </div>
 
     <div class="comicContainer" style ="height: 500px">
-        <div class="comicNar">ComicNar3</div>
+        <div class="comicNar">
+            <h2>Graph of average mortgage cost of houses sold in that year versus year in which they were sold</h2>
+            <!-- <p><b>Y-axis</b> represents cost of down-payment plus mortgage in the first year</p> -->
+        </div>
         <div class="comic"></div>     
     </div>
 
+    <div class="comicContainer" style="grid-template-columns: 1fr 1fr;">
+        <div class="comicNar"><img src="Image9.jpeg" alt="datacomic_1" /></div>
+        <div class="comic"><img src="Image10.jpeg" alt="datacomic_1" /></div>
+    </div>
+
+    <div class="comicContainer" style="grid-template-columns: 1fr 1fr;">
+        <div class="comicNar"><img src="Image11.jpeg" alt="datacomic_1" /></div>
+        <div class="comic"><img src="Image12.jpeg" alt="datacomic_1" /></div>
+    </div>
+
     <div class="graphContainer">
-        <div class="graphNar">GraphNar3</div>
-        <div class="graph"><PolicyGraphLayout/></div>
+        <div class="graphNar"><img src="Image13.jpeg" alt="datacomic_1" /></div>
+        <div class="graph">
+            <h3>Using Brushstrokes to Explore the Potential Allocation Increase for Boston's Affordable Housing Fund: Estimating Homes that could be Built
+            </h3>
+            <PolicyGraphLayout/></div>
     </div>
-
-    <div class="comicContainer">
-        <div class="comicNar">ComicNar4</div>
-        <div class="comic">Comic4</div>
-    </div>
-
 
     <div class="header footer">
         <p><b>Acknowledgements</b></p>

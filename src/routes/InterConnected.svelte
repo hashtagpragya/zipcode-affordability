@@ -207,7 +207,7 @@
           <circle
             {...getCoords(house)}
             r="0"
-            fill="green"
+            fill="#610C63"
             class="animated-circle"
           />
         {/each}

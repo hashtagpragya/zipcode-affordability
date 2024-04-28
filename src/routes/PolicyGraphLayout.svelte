@@ -43,10 +43,10 @@
         <ScatterPlot on:brushChanged={handleBrushingChanged} data={data}/>
     </div>
     <div class="policy">
-        <h3>Policies Effects</h3>
+        <h3>Projected Revenue Per Policy Implementation</h3>
         <PolicyGraph property_taxAmount={property_taxAmount} transfer_taxAmount={transfer_taxAmount}/>
 
-        <h3>The affordable housing potential</h3>
+        <h3>Number of Homes That Could Be Built </h3>
         
         <!-- TODO Do more meaningful calculations here -->
         <span> {housingpotential}</span>  

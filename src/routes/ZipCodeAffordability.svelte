@@ -7,8 +7,8 @@
 
 
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
-    let colorDict = {"Single-Family Homes": "green", "Condominiums/Apartments": "blue", "Other": "brown", "Multi-Family Dwellings": "yellow",
-                     "Row Houses": "purple", "Contemporary": "orange"}
+    let colorDict = {"Single-Family Homes": " #540b0e", "Condominiums/Apartments": "#335c67", "Other": "#e09f3e", "Multi-Family Dwellings": "#a53860",
+                     "Row Houses": "#f7a072", "Contemporary": "#9a8c98"}
 
     mapboxgl.accessToken = "pk.eyJ1IjoidXNvbmlhIiwiYSI6ImNsdW9xMnZlYjBpZmkya3BiODN4aHJmaDEifQ.7_EpwmnX-wcM1QNdRvujJg";
 
@@ -106,7 +106,6 @@
 	flex: 1;
     width: 100%;
     height: 500px;
-
     }
 
     #map svg {
