@@ -6,7 +6,7 @@
 
   let dataAffordable = [];
   let dataUnaffordable = [];
-  let svg, map;
+  let svg, linesMap;
   let householdIncome = 65000;
   let houses = [];
   let mapViewChanged = 0;
@@ -44,14 +44,14 @@
   // AVERAGE cost of those affordable styles by year: data map - FIRST YEAR PAYMENT BY YEAR
 
   onMount(async () => {
-    map = new mapboxgl.Map({
-      container: "map",
+    linesMap = new mapboxgl.Map({
+      container: "linesMap",
       style: "mapbox://styles/mapbox/streets-v12",
       center: [-71.3679725, 42.40010974514135],
       zoom: 10,
     });
 
-    await new Promise((resolve) => map.on("load", resolve));
+    await new Promise((resolve) => linesMap.on("load", resolve));
 
     houses = await d3
       .csv(
@@ -87,23 +87,6 @@
       .attr("class", "y-axis")
       .attr("transform", translate(usableArea.left, 0))
       .call(d3.axisLeft(yScale));
-
-    // xAxis = d3
-    //   .select(svg)
-    //   .append("g")
-    //   .attr("class", "x-axis")
-    //   .attr("transform", translate(0, ${usableArea.bottom}))
-    //   .call(
-    //     d3
-    //       .axisBottom(xScale)
-    //       .tickFormat((d) => customTimeFormat(d).replace(/,/g, ""))
-    //   );
-    // yAxis = d3
-    //   .select(svg)
-    //   .append("g")
-    //   .attr("class", "y-axis")
-    //   .attr("transform", translate(${usableArea.left}, 0))
-    //   .call(d3.axisLeft(yScale));
 
     // Define the number of points on the line
     const numPoints = 12;
@@ -189,7 +172,7 @@
     );
   }
 
-  $: map?.on("move", (evt) => mapViewChanged++);
+  $: linesMap?.on("move", (evt) => mapViewChanged++);
 
   function affordable(first_year_payment, income) {
     return income * 0.3 > first_year_payment;
@@ -201,7 +184,7 @@
 
   function getCoords(house) {
     let point = new mapboxgl.LngLat(+house.lon, +house.lat);
-    let { x, y } = map.project(point);
+    let { x, y } = linesMap.project(point);
     return { cx: x, cy: y };
   }
 </script>
@@ -209,7 +192,7 @@
 <h1>Map and Line for 65000/yr household income</h1>
 
 <!-- animate slow -->
-<div id="map">
+<div id="linesMap">
   <svg>
     {#key mapViewChanged}
       {#each years as year}
@@ -283,12 +266,12 @@
     font-size: 12px;
   }
 
-  #map {
+  #linesMap {
     flex: 1;
     overflow: auto;
   }
 
-  #map svg {
+  #linesMap svg {
     position: absolute;
     z-index: 1;
     width: 100%;
