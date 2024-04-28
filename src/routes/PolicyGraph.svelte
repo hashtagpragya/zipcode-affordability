@@ -41,7 +41,7 @@
             y={yScale("Policy 1") + yScale.bandwidth() / 2}
             dy=".35em"
           >
-          Policy 1
+          Property
           </text>
           <rect
             x={0}
@@ -66,7 +66,7 @@
                 y={yScale("Policy 2") + yScale.bandwidth() / 2}
                 dy=".35em"
               >
-              Policy 2
+              Transfer
               </text>
               <rect
                 x={0}
