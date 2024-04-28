@@ -1,5 +1,6 @@
 <script>
-    import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
+    import InterConnected from "./InterConnected.svelte";
+import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
     import ZipCodeAffordability from "./ZipCodeAffordability.svelte";
 </script>
 
@@ -27,7 +28,7 @@
  
     <div class="graphContainer">
         <div class="graphNar">GraphNar2</div>
-        <div class="graph">Graph2</div>
+        <div class="graph"><InterConnected/></div>
     </div>
 
     <div class="comicContainer">
