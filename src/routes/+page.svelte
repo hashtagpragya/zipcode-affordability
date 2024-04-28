@@ -10,9 +10,23 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
         <p>Team Robin Hood: Alex, Esther, Pragya, Sonia </p>
     </div>
     <div class="comicContainer">
-        <div class="comicNar">  ComicNar1
+        <div class="comicNar">  <img src="Image1.jpeg" alt="datacomic_1" />
         </div>
-        <div class="comic">    Comic1
+        <div class="comic">     <img src="Image2.jpeg" alt="datacomic_1" />
+        </div>
+    </div>
+
+    <div class="comicContainer" style="grid-template-columns: 1fr;">
+        <div class="comicNar">  <img src="Image3.jpeg" alt="datacomic_1" />
+        </div>
+        <!-- <div class="comic">     <img src="Image4.jpeg" alt="datacomic_1" />
+        </div> -->
+    </div>
+
+    <div class="comicContainer">
+        <div class="comicNar">  <img src="Image4.jpeg" alt="datacomic_1" />
+        </div>
+        <div class="comic">     <img src="Image5.jpeg" alt="datacomic_1" />
         </div>
     </div>
 
@@ -54,6 +68,10 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
 </div>
 
 <style>
+
+img {
+    width: 100%;
+}
 .grid-container {
     display: flex;
     flex-direction: column;

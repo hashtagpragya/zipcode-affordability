@@ -27,9 +27,9 @@
     usableArea.height = usableArea.bottom - usableArea.top;
 
 
-    $:xScale = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([usableArea.left, usableArea.right])
+    $:xScale = d3.scaleLinear().domain([2000, 2023]).range([usableArea.left, usableArea.right])
         
-    $: yScale = d3.scaleLinear().domain(d3.extent(data, d => d.price)).range([usableArea.bottom, usableArea.top])
+    $: yScale = d3.scaleLinear().domain([0, 30000000]).range([usableArea.bottom, usableArea.top])
     
     let xAxis, yAxis;
 
@@ -90,7 +90,6 @@
 	    d3.select(svg).call(d3.brush().on("start brush end", brushed));
         d3.select(svg).selectAll(".houses, .overlay ~ *").raise();
     }
-
 
 </script>
 

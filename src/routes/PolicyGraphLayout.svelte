@@ -22,25 +22,6 @@
 
     onMount(async() => {
 
-        //Link to use: https://raw.githubusercontent.com/tranalex099/boston-housing-viz/main/filtered_policies_boston_residential_sales
-        // field of interest:
-        // year
-        // yearbuilt
-        // price
-        // transfer_tax
-        // property_tax
-
-
-        // data = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/filtered_policies_boston_residential_sales.csv").then(houses => {(house) =>
-
-        //     year: Number(house.year),
-        //     price: Number(house.price),
-        //     property_tax: Number(house.property_tax),
-        //     transfer_tax: Number(house.policy2),
-        //     yearbuilt: Number(house.yearbuilt)
-        // });
-        // console.log("data:", data)
-
         data = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/filtered_policies_boston_residential_sales.csv", house => ({
             ...house, 
 
@@ -51,7 +32,10 @@
             yearbuilt: Number(house.yearbuilt)
 
         }))
+
     })
+    
+    $: data = data.filter((data) => data.price <= 30000000)
 
 </script>
 <div class="container">

@@ -39,7 +39,7 @@
             text-anchor="end"
             x={-2}
             y={yScale("Policy 1") + yScale.bandwidth() / 2}
-            dy=".35em"
+            dy="1em"
           >
           Property
           </text>
@@ -54,7 +54,7 @@
             x={xScale(property_taxAmount)}
             dx="2"
             y={yScale("Policy 1") + yScale.bandwidth() / 2}
-            dy=".35em"
+            dy="1em"
           >
             {formatLabel(property_taxAmount)}
           </text>
@@ -73,6 +73,7 @@
                           y={yScale("Policy 2")}
                           width={xScale(transfer_taxAmount)}
                 height={yScale.bandwidth()}
+                
               />
               <text
                 text-anchor="start"
