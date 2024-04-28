@@ -197,7 +197,6 @@
     return { cx: x, cy: y };
   }
 </script>
-
 <div id="linesMap">
   <svg>
     {#key linesMapViewChanged}

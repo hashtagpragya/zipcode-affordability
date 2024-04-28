@@ -31,9 +31,9 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
         <div class="graph"><InterConnected/></div>
     </div>
 
-    <div class="comicContainer">
+    <div class="comicContainer" style ="height: 500px">
         <div class="comicNar">ComicNar3</div>
-        <div class="comic">Comic3</div>     
+        <div class="comic"></div>     
     </div>
 
     <div class="graphContainer">
@@ -64,6 +64,7 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 1rem;
+    height: 500;
 }
 
 .comicContainer {
@@ -72,7 +73,7 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
     gap: 1rem;
 }
 
-.comicNar {
+/* .comicNar {
     border: 1px solid black;
 }
 
@@ -85,7 +86,7 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
 }
 .graph {
     border: 1px solid black;
-}
+} */
 
 .header {
  
