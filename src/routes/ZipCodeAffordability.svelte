@@ -7,6 +7,8 @@
 
 
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
+    let colorDict = {"Single-Family Homes": "green", "Condominiums/Apartments": "blue", "Other": "brown", "Multi-Family Dwellings": "yellow",
+                     "Row Houses": "purple", "Contemporary": "orange"}
 
     mapboxgl.accessToken = "pk.eyJ1IjoidXNvbmlhIiwiYSI6ImNsdW9xMnZlYjBpZmkya3BiODN4aHJmaDEifQ.7_EpwmnX-wcM1QNdRvujJg";
 
@@ -70,7 +72,7 @@
     <svg>
         {#key mapViewChanged}
             {#each filteredHouse as house, index }
-            <circle { ...getCoords(house) } r="5" fill={ colors(index)} />
+            <circle { ...getCoords(house) } r="5" fill={colorDict[house.style]} />
             {/each}
         {/key}
     </svg>
@@ -83,7 +85,7 @@
     <ul class="legend">
     
         {#each data as d,index}
-            <li style="--color: { colors(index) }">
+            <li style="--color: { colorDict[d.label] }">
                 <span class="swatch"></span>
                 {d.label} <em>({d.value})</em>
             </li>
