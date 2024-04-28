@@ -6,6 +6,8 @@
     import Pie from '$lib/Pie.svelte';
     import Grid from 'svelte-grid-responsive';
   import InterConnected from "./InterConnected.svelte";
+  import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
+
 
 
 
@@ -160,7 +162,7 @@
     </Grid>
 </div>
 
-<h1> Policy </h1>
+<h1> Proposed Policies </h1>
 
 <div id="Policy">
     <Grid container gutter={12}>
@@ -168,7 +170,8 @@
         <Grid xs={12} lg={4} order={2}>
 
             <div id="policy_viz">
-                <img src="policy_placeholder.png" alt="policy" width="400" height="400"/>
+                <!-- <img src="policy_placeholder.png" alt="policy" width="400" height="400"/> -->
+                <PolicyGraphLayout/>
             </div>
         </Grid>
     </Grid>
@@ -190,9 +193,6 @@
 	flex: 1;
     width: 800px;
         height: 500px;
-  
-    
-    
     }
 
     #map svg {
