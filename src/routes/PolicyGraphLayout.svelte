@@ -30,16 +30,23 @@
         // transfer_tax
         // property_tax
 
-        data = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/filtered_policies_boston_residential_sales.csv", house => ({
-            ...house, 
 
-            year: Number(house.year),
-            price: Number(house.price),
-            property_tax: Number(house.property_tax),
-            transfer_tax: Number(house.transfer_tax),
-            yearbuilt: Number(house.yearbuilt)
+        data = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/filtered_policies_boston_residential_sales.csv").then(houses => {
+            return houses;
+        });
+        console.log("data:", data)
 
-        }))
+        // data = await d3.csv("https://raw.githubusercontent.com/usonia09/zipcode-affordability/main/data/filtered_policies_boston_residential_sales.csv", house => ({
+        //     ...house, 
+
+        //     year: Number(house.year),
+        //     price: Number(house.price),
+        //     property_tax: Number(house.property_tax),
+        //     transfer_tax: Number(house.policy2),
+        //     yearbuilt: Number(house.yearbuilt)
+
+        // }))
+        // console.log("data:", data)
     })
 
 </script>

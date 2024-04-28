@@ -1,8 +1,8 @@
 <script>
     import * as d3 from "d3";
     
-    export let policy1Amount = 0;
-    export let policy2Amount = 0;
+    export let property_taxAmount = 0;
+    export let transfer_taxAmount = 0;
 
     export let houseCounts;
     const formatLabel = d3.format(',.0f');
@@ -17,13 +17,13 @@
 	bottom: height - margin.bottom,
 	left: margin.left
     };
-    usableArea.width = (policy1Amount==0 && policy2Amount==0)? 1: usableArea.right - usableArea.left;
+    usableArea.width = (property_taxAmount==0 && transfer_taxAmount==0)? 1: usableArea.right - usableArea.left;
     usableArea.height = usableArea.bottom - usableArea.top;
 
 
     console.log(usableArea.width)
     
-    $:xScale = d3.scaleLinear().domain([0, d3.max([policy1Amount, policy2Amount])]).range([0, usableArea.width]);
+    $:xScale = d3.scaleLinear().domain([0, d3.max([property_taxAmount, transfer_taxAmount])]).range([0, usableArea.width]);
         
     $: yScale = d3.scaleBand().domain(["Policy 1", "Policy 2"]).range([usableArea.height, 0]).padding(0.25); // Replace these with actual policy names
 
@@ -46,17 +46,17 @@
           <rect
             x={0}
                       y={yScale("Policy 1")}
-                      width={xScale(policy1Amount)}
+                      width={xScale(property_taxAmount)}
             height={yScale.bandwidth()}
           />
           <text
             text-anchor="start"
-            x={xScale(policy1Amount)}
+            x={xScale(property_taxAmount)}
             dx="2"
             y={yScale("Policy 1") + yScale.bandwidth() / 2}
             dy=".35em"
           >
-            {formatLabel(policy1Amount)}
+            {formatLabel(property_taxAmount)}
           </text>
 
               <!-- Policy 2 -->
@@ -71,17 +71,17 @@
               <rect
                 x={0}
                           y={yScale("Policy 2")}
-                          width={xScale(policy2Amount)}
+                          width={xScale(transfer_taxAmount)}
                 height={yScale.bandwidth()}
               />
               <text
                 text-anchor="start"
-                x={xScale(policy2Amount)}
+                x={xScale(transfer_taxAmount)}
                 dx="2"
                 y={yScale("Policy 2") + yScale.bandwidth() / 2}
                 dy=".35em"
               >
-                {formatLabel(policy2Amount)}
+                {formatLabel(transfer_taxAmount)}
               </text>
 
 
