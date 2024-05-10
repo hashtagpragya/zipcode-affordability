@@ -74,6 +74,19 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
             </h3>
             <PolicyGraphLayout/></div>
     </div>
+    <div class="Summary">
+        <h1>Summary</h1>
+        <p> Housing unaffordability in the Boston area is on the rise, posing significant challenges for residents who can no longer afford housing that costs less than 30% of their income. This trend is fueled by several factors, including an increase in corporate ownership and the growing market for high-end luxury properties. To address this pressing issue, we propose implementing two key policies: transfer fees and a progressive tax.
+        </p>
+        <p>
+            The first policy, transfer fees, would impose a levy on real estate transactions, particularly targeting high-value properties. This measure aims to capture a portion of the wealth generated from the buying and selling of luxury real estate, redirecting it towards initiatives aimed at increasing affordable housing options.
+        </p>
+        <p>
+            The second policy, a progressive tax, would target individuals or corporations with higher incomes and property holdings. By implementing a tax structure that scales based on income and property value, we can ensure that those who can afford to contribute more towards addressing housing unaffordability bear a larger share of the burden. The revenue generated from this tax can be earmarked for funding initiatives to develop and maintain affordable housing units for low to middle-income individuals and families.
+        </p> 
+        <p>
+            By implementing these policies, we can address the root causes of housing unaffordability in the Boston area while simultaneously redistributing wealth to support those most in need. Investing in affordable housing initiatives not only provides shelter for those struggling to make ends meet but also fosters economic stability and social equity within our communities. It's time to take decisive action to ensure that everyone has access to safe, affordable housing in the Boston area. </p>
+    </div>
 
     <div class="header footer">
         <p><b>Acknowledgements</b></p>
