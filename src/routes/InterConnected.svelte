@@ -19,6 +19,9 @@
     [-70.92087, 42.39694], // Northeast coordinates
   ];
 
+
+
+
   let width = 800,
     height = 500;
   let margin = { top: 10, right: 10, bottom: 30, left: 20 };
@@ -57,7 +60,7 @@
   onMount(async () => {
     linesMap = new mapboxgl.Map({
       container: "linesMap",
-      style: "mapbox://styles/mapbox/streets-v12",
+      style: "mapbox://styles/mapbox/light-v11",
       center: [-71.3679725, 42.40010974514135],
       zoom: 0,
       maxBounds: bounds,
@@ -113,7 +116,7 @@
           .transition()
           .delay(i * 1000)
           .duration(1000)
-          .style("stroke", "steelblue")
+          .style("stroke", " #7469B6")
           .style("stroke-width", 10)
           .style("fill", "none");
       }
@@ -200,20 +203,28 @@
 <div id="linesMap">
   <svg>
     {#key linesMapViewChanged}
-      {#each years as year}
-        {#each filteredUnaffordableHouse
-          .slice(0, 3000)
-          .filter((house) => house.sale_year === year) as house}
-          <circle
-            {...getCoords(house)}
-            r="0"
-            fill="#610C63"
-            class="animated-circle"
-          />
+        {#each years as year}
+            {#each filteredUnaffordableHouse
+                .slice(0, 3000)
+                .filter((house) => house.sale_year === year) as house}
+                <!-- White border -->
+                <circle
+                    {...getCoords(house)}
+                    r="3"
+                    fill="white"
+                    class="animated-circle-border" 
+                />
+                <!-- Main circle -->
+                <circle
+                    {...getCoords(house)}
+                    r="2" 
+                    fill="#7469B6"
+                    class="animated-circle"
+                />
+            {/each}
         {/each}
-      {/each}
     {/key}
-  </svg>
+</svg>
 </div>
 
 <div id="lineGraph">
@@ -254,6 +265,7 @@
     flex-direction: column;
     align-items: left;
     margin: 40px;
+   
   }
 
   #lineGraph svg {
@@ -262,6 +274,7 @@
     width: 800px;
     height: 500px;
     pointer-events: none;
+  
   }
   .x-axis path,
   .x-axis line,

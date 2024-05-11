@@ -1,5 +1,6 @@
 body {
   font: 100%/1.5 system-ui, sans-serif;
+  font-family: Nunito, sans-serif;
   display: flex;
   flex-flow: column;
   max-width: 80em;
@@ -8,7 +9,7 @@ body {
   overflow-x: hidden;
   margin: auto;
   padding: 1em;
-  background: rgb(238,129,179);
+  /* background: rgb(238,129,179); */
   background: linear-gradient(351deg, rgba(238,129,179,0.321187850140056) 0%, rgba(255,253,215,1) 98%);
   
 }

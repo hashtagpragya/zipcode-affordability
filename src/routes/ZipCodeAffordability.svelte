@@ -7,7 +7,7 @@
 
 
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
-    let colorDict = {"Single-Family Homes": " #540b0e", "Condominiums/Apartments": "#335c67", "Other": "#e09f3e", "Multi-Family Dwellings": "#a53860",
+    let colorDict = {"Single-Family Homes": " #AD88C6", "Condominiums/Apartments": "#FB9AD1", "Other": "#BBC3A4", "Multi-Family Dwellings": "#6196A6",
                      "Row Houses": "#f7a072", "Contemporary": "#9a8c98"}
 
     mapboxgl.accessToken = "pk.eyJ1IjoidXNvbmlhIiwiYSI6ImNsdW9xMnZlYjBpZmkya3BiODN4aHJmaDEifQ.7_EpwmnX-wcM1QNdRvujJg";
@@ -16,6 +16,24 @@
     let map, filteredHouse;
     let mapViewChanged = 0;
     let incomeFilter;
+//     const bounds = [
+//     [-73.5023, 41.1865], // Southwest coordinates
+//     [-70.8157, 42.8864]  // Northeast coordinates
+
+//   ];
+
+const centerLatitude = 42.3960562;
+const centerLongitude = -71.0878346;
+
+
+// Define a buffer distance in degrees (adjust as needed)
+const bufferDistance = 0.5; // Adjust as needed
+
+// Calculate bounds based on the buffer distance
+const southwest = [centerLongitude - bufferDistance, centerLatitude - bufferDistance];
+const northeast = [centerLongitude + bufferDistance, centerLatitude + bufferDistance];
+
+const bounds = [southwest, northeast];
 
 
      // Make sure the variable definition is *outside* the block
@@ -51,9 +69,10 @@
         map = new mapboxgl.Map({
             /* options */
             container: "map",
-            style: "mapbox://styles/mapbox/streets-v12",
+            style: "mapbox://styles/mapbox/light-v11",
             center: [ -71.09691029118308,  42.36437408357162],
             zoom: 10,
+            maxBounds: bounds
         });
 
         await new Promise(resolve => map.on("load", resolve));
@@ -72,6 +91,7 @@
     <svg>
         {#key mapViewChanged}
             {#each filteredHouse as house, index }
+            <circle { ...getCoords(house) } r="6" fill="white" />
             <circle { ...getCoords(house) } r="5" fill={colorDict[house.style]} />
             {/each}
         {/key}
