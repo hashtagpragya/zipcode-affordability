@@ -62,8 +62,8 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
 
     <div class="graphContainer" style="grid-template-columns: 1fr;">
         <div class="graph">
-            <h2>Using Brushstrokes to Explore the Potential Allocation Increase for Boston's Affordable Housing Fund: Estimating Homes that could be Built
-            </h2>
+            <h2><center>Graphical Representation of Housing Costs Across Sales Years</center></h2>
+            <p><i><center>Using Brushstrokes to Explore the Potential Allocation Increase for Boston's Affordable Housing Fund: Estimating Homes that could be Built</center></i> </p>
             <PolicyGraphLayout/></div>
     </div>
 
