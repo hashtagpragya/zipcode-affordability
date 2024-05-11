@@ -33,7 +33,7 @@
 
   <div class="graphContainer">
     <div class="graphNar"><img src="Image8.jpeg" alt="datacomic_1" /></div>
-    <div class="graph">
+    <div class="graph" style="margin-bottom: 40px;">
       <h2>Visual Depiction of the Growth of Unaffordable Housing in Boston</h2>
       <InterConnected />
     </div>
