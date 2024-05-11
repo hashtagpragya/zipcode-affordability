@@ -72,7 +72,7 @@ const bounds = [southwest, northeast];
             style: "mapbox://styles/mapbox/light-v11",
             center: [ -71.086238,   42.305997],
             zoom: 11,
-            minZoom: 10.5,
+            minZoom: 10.7,
             maxBounds: bounds
 
         });
