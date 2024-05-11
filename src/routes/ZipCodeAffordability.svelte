@@ -70,9 +70,11 @@ const bounds = [southwest, northeast];
             /* options */
             container: "map",
             style: "mapbox://styles/mapbox/light-v11",
-            center: [ -71.09691029118308,  42.36437408357162],
-            zoom: 10,
+            center: [ -71.086238,   42.305997],
+            zoom: 11,
+            minZoom: 10.5,
             maxBounds: bounds
+
         });
 
         await new Promise(resolve => map.on("load", resolve));
