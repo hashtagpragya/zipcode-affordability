@@ -24,7 +24,6 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
     </div>
 
     <div class="graphContainer" style="grid-template-columns: 1fr;">
-        <!-- <div class="graphNar"><img src="Image6.jpeg" alt="datacomic_1" /></div> -->
         <div class="graph">
             <h2>Input Your Annual Income to Discover Affordable Housing Options</h2>
             <ZipCodeAffordability/></div>
@@ -60,13 +59,14 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
         <div class="comic"><img src="Image12.jpeg" alt="datacomic_1" /></div>
     </div>
 
-    <div class="graphContainer">
-        <div class="graphNar"><img src="Image13.jpeg" alt="datacomic_1" /></div>
+
+    <div class="graphContainer" style="grid-template-columns: 1fr;">
         <div class="graph">
-            <h3>Using Brushstrokes to Explore the Potential Allocation Increase for Boston's Affordable Housing Fund: Estimating Homes that could be Built
-            </h3>
+            <h2>Using Brushstrokes to Explore the Potential Allocation Increase for Boston's Affordable Housing Fund: Estimating Homes that could be Built
+            </h2>
             <PolicyGraphLayout/></div>
     </div>
+
     <div class="Summary">
         <h1>Summary</h1>
         <p> Housing unaffordability in the Boston area is on the rise, posing significant challenges for residents who can no longer afford housing that costs less than 30% of their income. This trend is fueled by several factors, including an increase in corporate ownership and the growing market for high-end luxury properties. To address this pressing issue, we propose implementing two key policies: transfer fees and a progressive tax.
