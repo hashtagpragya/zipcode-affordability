@@ -9,18 +9,11 @@ import PolicyGraphLayout from "./PolicyGraphLayout.svelte";
         <h2>Housing Affordability & Policy Implications</h2>
         <p>Team Robin Hood: Alex, Esther, Pragya, Sonia </p>
     </div>
-    <div class="comicContainer" style="grid-template-columns: 1fr;">
-        <!-- <div class="comicNar">  <img src="Image1.jpeg" alt="datacomic_1" />
-        </div> -->
+    <div class="comicContainer">
         <div class="comic">     <img src="Image2.jpeg" alt="datacomic_1" />
         </div>
-    </div>
-
-    <div class="comicContainer" style="grid-template-columns: 1fr;">
         <div class="comicNar">  <img src="Image3.jpeg" alt="datacomic_1" />
         </div>
-        <!-- <div class="comic">     <img src="Image4.jpeg" alt="datacomic_1" />
-        </div> -->
     </div>
 
     <div class="comicContainer">
