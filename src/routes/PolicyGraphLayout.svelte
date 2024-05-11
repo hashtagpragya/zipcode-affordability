@@ -40,7 +40,14 @@
 </script>
 <div class="container">
     <div class="scatterplot" style="margin: 10px">
-        <ScatterPlot on:brushChanged={handleBrushingChanged} data={data}/>
+        <div class="x-label">
+            <div class="y-label">
+                <text class="axis-label">Cost of House</text>
+                <ScatterPlot on:brushChanged={handleBrushingChanged} data={data}/>
+            </div>
+            <text> <center>Year Sold</center></text>
+        </div>
+
     </div>
     <div class="policy">
         <h3>Projected Revenue Per Policy Implementation</h3>
@@ -49,10 +56,7 @@
             <h4 style="color: #610C63">From Transfer Fees: $ {transfer_taxAmount}</h4>
 
         <h3>Number of Homes That Could Be Built </h3>
-        
-        <!-- TODO Do more meaningful calculations here -->
-        <span> {housingpotential}</span>  
-        <!-- TODO Add a scale visualization -->
+                <span> {housingpotential}</span>  
         
     </div>
     
@@ -62,9 +66,19 @@
 <style>
 @import url("$lib/global.css");
 
+.y-label {
+    display: flex;
+    align-items: center;
+}
+
+.axis-label {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
+
 
 .container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;

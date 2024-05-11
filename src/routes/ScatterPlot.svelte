@@ -121,8 +121,12 @@
 
             {/each}
         </g>
-        <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis} />
-        <g transform="translate({usableArea.left}, 0)" bind:this={yAxis} />
+        <g transform="translate(0, {usableArea.bottom})" bind:this={xAxis}>
+            <!-- <text x="{width / 2}" y="40" text-anchor="middle">Year</text> -->
+        </g>
+        <g transform="translate({usableArea.left}, 0)" bind:this={yAxis}>
+            <!-- <text x="-20" y="{height / 2 - 100} " transform="rotate(-90 -20,{height / 2})" text-anchor="middle">Price</text> -->
+        </g>
     </svg>
     <dl id="housing-tooltip" class="info tooltip" hidden={hoveredIndex === -1}  style="top: {tooltipPosition.y}px; left: {tooltipPosition.x}px"  bind:this={houseTooltip} role="tooltip">
 
