@@ -102,7 +102,11 @@ const bounds = [southwest, northeast];
 
 
 <div class="container">
-    <input type="number" id="income-box" placeholder="Enter your annual income" bind:value={incomeFilter}>
+    <div class="income-box">
+        <label for="number"><b>Annual Income:</b> </label>
+        <input type="number" id="income-box" placeholder="Enter your annual income" bind:value={incomeFilter}>
+    
+    </div>
 
     <ul class="legend">
     
@@ -129,6 +133,11 @@ const bounds = [southwest, northeast];
     width: 100%;
     height: 500px;
     }
+    .income-box {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+    }
 
     #map svg {
     position: absolute;
@@ -149,7 +158,7 @@ const bounds = [southwest, northeast];
     .container {
         padding: 10px;
         display: flex;
-        gap: 10px;
+        justify-content: space-between
     }
 
         
