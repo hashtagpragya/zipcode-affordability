@@ -211,7 +211,7 @@
                 <circle
                     {...getCoords(house)}
                     r="3"
-                    fill="white"
+                    fill="transparent"
                     class="animated-circle-border" 
                 />
                 <!-- Main circle -->
