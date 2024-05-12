@@ -19,9 +19,6 @@
     [-70.92087, 42.39694], // Northeast coordinates
   ];
 
-
-
-
   let width = 800,
     height = 500;
   let margin = { top: 10, right: 10, bottom: 30, left: 20 };
@@ -39,16 +36,16 @@
     filteredUnaffordableHouse,
     rolledDataUnaffordable = [];
   const lineCoordinates = [
-    [21.1818181818182, 370.0909090909091],
-    [108.18181818181819, 350.0909090909091],
-    [196.36363636363637, 365.1818181818182],
-    [284.54545454545456, 300.25429666846406],
-    [372.72727272727275, 260.3636363636364],
-    [460.90909090909093, 270.4545454545455],
-    [549.0909090909091, 230.3859297682076],
-    [637.2727272727273, 170.63636363636363],
-    [725.4545454545455, 163.72727272727275],
-    [790.6363636363637, 161.75349091692405],
+    [21.1818181818182, 300.0909090909091],
+    [108.18181818181819, 310.0909090909091],
+    [196.36363636363637, 260.1818181818182],
+    [284.54545454545456, 270.25429666846406],
+    [372.72727272727275, 230.3636363636364],
+    [460.90909090909093, 170.4545454545455],
+    [549.0909090909091, 160.3859297682076],
+    [637.2727272727273, 140.63636363636363],
+    [725.4545454545455, 150.72727272727275],
+    [790.6363636363637, 120.75349091692405],
   ];
   mapboxgl.accessToken =
     "pk.eyJ1IjoiZWZhaXRoMSIsImEiOiJjbHVwM3hqbngxejEwMmlxcHZoMnd4NzVoIn0.aImOljzGu-9EUSa9aFcQzw";
@@ -83,7 +80,7 @@
 
     yScale = d3
       .scaleLinear()
-      .domain([0, 20000])
+      .domain([0, 100000])
       .range([usableArea.bottom, usableArea.top]);
 
     xAxis = d3
@@ -97,12 +94,31 @@
           .tickFormat((d) => customTimeFormat(d).replace(/,/g, ""))
       );
 
+    xAxis = d3
+      .select(svg)
+      .append("text")
+      .attr("class", "x-axis-label")
+      .attr("x", usableArea.width / 2)
+      .attr("y", 530)
+      .attr("text-anchor", "middle")
+      .text("Year House Sold");
+
     yAxis = d3
       .select(svg)
       .append("g")
       .attr("class", "y-axis")
       .attr("transform", translate(usableArea.left, 0))
       .call(d3.axisLeft(yScale));
+
+    yAxis = d3
+      .select(svg)
+      .append("text")
+      .attr("class", "y-axis-label")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -usableArea.height / 2)
+      .attr("y", -40)
+      .attr("text-anchor", "middle")
+      .text("Average first-year payment (downpayment + mortgage)");
 
     function drawLineSegments() {
       d3.selectAll(".line-segment").remove();
@@ -131,16 +147,16 @@
         circles.forEach((circle, index) => {
           setTimeout(() => {
             circle.setAttribute("r", "5");
-          }, index * 2.2);
+          }, index * 9.2);
         });
 
         setTimeout(() => {
           circles.forEach((circle) => {
             circle.setAttribute("r", "0");
           });
-        }, 6600);
+        }, 200);
 
-        setTimeout(animateCircles, 8600);
+        setTimeout(animateCircles, 9000);
       }, 0);
     }
     animateCircles();
@@ -200,33 +216,30 @@
     return { cx: x, cy: y };
   }
 </script>
+
 <div id="linesMap">
   <svg>
     {#key linesMapViewChanged}
-        {#each years as year}
-            {#each filteredUnaffordableHouse
-                .slice(0, 3000)
-                .filter((house) => house.sale_year === year) as house}
-                <!-- White border -->
-                <circle
-                    {...getCoords(house)}
-                    r="3"
-                    fill="transparent"
-                    class="animated-circle-border" 
-                />
-                <!-- Main circle -->
-                <circle
-                    {...getCoords(house)}
-                    r="2" 
-                    fill="#7469B6"
-                    class="animated-circle"
-                />
-            {/each}
+      {#each years as year}
+        {#each filteredUnaffordableHouse
+          .slice(0, 750)
+          .filter((house) => house.sale_year === year) as house}
+          <!-- Main circle -->
+          <circle
+            {...getCoords(house)}
+            r="2"
+            fill="#7469B6"
+            stroke="#ffffff"
+            stroke-width="1"
+            class="animated-circle"
+          />
         {/each}
+      {/each}
     {/key}
-</svg>
+  </svg>
 </div>
 
+<h2>Graph of average first-year payment of houses sold over the years</h2>
 <div id="lineGraph">
   <svg bind:this={svg}> </svg>
 </div>
@@ -265,7 +278,6 @@
     flex-direction: column;
     align-items: left;
     margin: 40px;
-   
   }
 
   #lineGraph svg {
@@ -274,21 +286,16 @@
     width: 800px;
     height: 500px;
     pointer-events: none;
-  
-  }
-  .x-axis path,
-  .x-axis line,
-  .y-axis path,
-  .y-axis line {
-    fill: none;
-    stroke: #000;
-    stroke-width: 4;
-    shape-rendering: crispEdges;
   }
 
-  .x-axis text,
-  .y-axis text {
-    font-size: 12px;
+  .x-axis-label {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .y-axis-label {
+    font-size: 14px;
+    font-weight: bold;
   }
 
   #linesMap {
