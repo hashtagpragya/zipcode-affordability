@@ -50,13 +50,13 @@
   </div>
 
   <div class="comicContainer" style="grid-template-columns: 1fr 1fr;">
-    <div class="comicNar"><img src="Image9.jpeg" alt="datacomic_1" /></div>
-    <div class="comic"><img src="Image10.jpeg" alt="datacomic_1" /></div>
+    <div class="comicNar"><img src="Image9_2.jpeg" alt="datacomic_1" /></div>
+    <div class="comic"><img src="Image10_2.jpeg" alt="datacomic_1" /></div>
   </div>
 
   <div class="comicContainer" style="grid-template-columns: 1fr 1fr;">
-    <div class="comicNar"><img src="Image11.jpeg" alt="datacomic_1" /></div>
-    <div class="comic"><img src="Image12.jpeg" alt="datacomic_1" /></div>
+    <div class="comicNar"><img src="Image11_2.jpeg" alt="datacomic_1" /></div>
+    <div class="comic"><img src="Image12_2.jpeg" alt="datacomic_1" /></div>
   </div>
 
   <div class="graphContainer" style="grid-template-columns: 1fr;">
