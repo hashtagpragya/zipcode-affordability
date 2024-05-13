@@ -10,13 +10,13 @@
     <p>Team Robin Hood: Alex, Esther, Pragya, Sonia</p>
   </div>
   <div class="comicContainer">
-    <div class="comic"><img src="Image2.jpeg" alt="datacomic_1" /></div>
-    <div class="comicNar"><img src="Image3.jpeg" alt="datacomic_1" /></div>
+    <div class="comic"><img src="Image2_2.jpeg" alt="datacomic_1" /></div>
+    <div class="comicNar"><img src="Image3_2.jpeg" alt="datacomic_1" /></div>
   </div>
 
   <div class="comicContainer">
-    <div class="comicNar"><img src="Image4.jpeg" alt="datacomic_1" /></div>
-    <div class="comic"><img src="Image5.jpeg" alt="datacomic_1" /></div>
+    <div class="comicNar"><img src="Image4_2.jpeg" alt="datacomic_1" /></div>
+    <div class="comic"><img src="Image5_2.jpeg" alt="datacomic_1" /></div>
   </div>
 
   <div class="graphContainer" style="grid-template-columns: 1fr;">
@@ -27,12 +27,12 @@
   </div>
 
   <div class="comicContainer" style="grid-template-columns: 1fr 1fr;">
-    <div class="comicNar"><img src="Image6.jpeg" alt="datacomic_1" /></div>
-    <div class="comic"><img src="Image7.jpeg" alt="datacomic_1" /></div>
+    <div class="comicNar"><img src="Image6_2.jpeg" alt="datacomic_1" /></div>
+    <div class="comic"><img src="Image7_2.jpeg" alt="datacomic_1" /></div>
   </div>
 
   <div class="graphContainer">
-    <div class="graphNar"><img src="Image8.jpeg" alt="datacomic_1" /></div>
+    <div class="graphNar"><img src="Image8_2.jpeg" alt="datacomic_1" /></div>
     <div class="graph" style="margin-bottom: 40px;">
       <h2>Visual Depiction of the Growth of Unaffordable Housing in Boston</h2>
       <InterConnected />
@@ -42,7 +42,7 @@
   <div class="comicContainer" style="height: 500px">
     <div class="comicNar">
       <h2>
-        As we can see on the right, as more unaffordable housing props up in
+        As we can see on the right, as more unaffordable housing pops up in
         Boston, the cost of affordable housing increases as well.
       </h2>
     </div>
