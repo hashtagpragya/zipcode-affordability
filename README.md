@@ -4,6 +4,8 @@ How do luxury real estate developments in Boston affect housing affordability? W
 
 We tried to base our analysis on what the data revealed about the effect of luxury development on housing affordability and made suggestions for potential policies to help communities that were being negatively affected. We visualized our analysis using a combination of both reader-driven and author-driven approaches to raise awareness among the general public.
 
+Find the website here: https://usonia09.github.io/zipcode-affordability/
+
 
 
 
